@@ -19,35 +19,3 @@ public class CubeData
         public int colorIndex;
     }
 }
-
-[Serializable]
-public class Offset
-{
-    public float x;
-    public float y;
-    public float z;
-}
-
-[Serializable]
-public class _Colors
-{
-    public float r;
-    public float g;
-    public float b;
-    public float a;
-}
-
-[Serializable]
-public class _Data
-{
-    public Position position;
-    public int colorIndex;
-}
-
-[Serializable]
-public class Position
-{
-    public float x;
-    public float y;
-    public float z;
-}

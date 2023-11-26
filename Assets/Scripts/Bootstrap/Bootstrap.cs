@@ -5,39 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using BlackECS;
+using LasyDI;
 
 public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private Cube _cubesPrefabs;
 
-    PoolCubes<Cube> _pool;
-
     private void Start()
     {
-        _pool = new PoolCubes<Cube>(_cubesPrefabs);
-
-        World.RegistrationSystem<CubeInitializationSystem>();
-        World.RegistrationSystem<CubeWaitTakeAttackSystem>();
-        World.RegistrationSystem<CubeTakeAttackSystem>();
-
         var cubeData = new JsonToString().WriteJsonFile();
         var data = cubeData._data;
 
+        var pool = LasyContainer.GetObject<PoolCubes<Cube>>();
+
+        Dictionary<int, Color> colors = new Dictionary<int, Color>();
+
+        for (int i = 0; i < cubeData._colors.Count; i++)
+        {
+            colors[i] = cubeData._colors[i];
+        }
+
         for (int i = 0; i < data.Count; i++)
         {
-            var cube = _pool.Spawn();
+            var cube = pool.Spawn();
 
             World
             .CreateEntity()
             .AddComponent<CubeInitializationComponent>(x =>
             {
-                x.transform.Value = cube.transform;
-                x.renderer.Value = cube.Renderer;
+                x.view.Value = cube;
                 x.position.Value = data[i].position;
-                x.colorIndex.Value = data[i].colorIndex;
-
-                x.pool = _pool;
-                x.colors = cubeData._colors;
+                x.color.Value = colors[data[i].colorIndex];
             });
         }
     }

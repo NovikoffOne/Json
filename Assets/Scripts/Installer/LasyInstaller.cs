@@ -5,6 +5,8 @@ using LasyDI;
 
 public class LasyInstaller : MonoInstaller
 {
+    [SerializeField] public Cube _cubePrefab;
+
     public override void OnInstall()
     {
         LasyContainer
@@ -15,9 +17,9 @@ public class LasyInstaller : MonoInstaller
             .Bind<LasyTest2>()
             .AsSingle();
 
-        //LasyContainer
-        //    .BindPool<PoolCubes<Cube>, Cube>()
-        //    .AsSingle();
+        LasyContainer
+            .BindPool<PoolCubes<Cube>, Cube>()
+            .WhereInstance(_cubePrefab);
     }
 
     private void Update()

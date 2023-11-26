@@ -21,13 +21,11 @@ public class CubeWaitTakeAttackSystem : BaseSystem<CubeWaitTakeAttackComponent>
         {
             this.TransitToComponent<CubeTakeAttackComponent>(x =>
             {
-                x.transform.Value = component.Transform.Value;
+                x.view.Value = component.view.Value;
                 x.scaleForce.Value = scaleFactor;
                 x.speed.Value = speed;
                 x.direction.Value = randomDirection;
             });
-
-            this.ForgetComponent<CubeWaitTakeAttackComponent>();
         }
     }
 }

@@ -17,14 +17,13 @@ public class CubeTakeAttackSystem : BaseSystem<CubeTakeAttackComponent>
     {
         var currentLifeTime = UnityEngine.Random.Range(2, 5);
 
-        component.transform.Value.Translate(component.direction.Value * component.speed.Value * Time.deltaTime);
+        component.view.Value.transform.Translate(component.direction.Value * component.speed.Value * Time.deltaTime);
 
-        component.transform.Value.localScale -= Vector3.one * component.scaleForce.Value * deltaTime;
+        component.view.Value.transform.localScale -= Vector3.one * component.scaleForce.Value * deltaTime;
 
-        if (TryScaleValue(component.transform.Value.localScale))
+        if (TryScaleValue(component.view.Value.transform.localScale))
         {
-            component.pool.Despawn(component.transform.Value
-                .GetComponent<Cube>());
+            component.pool.Despawn(component.view.Value);
             
             this.DestroyEntity();
         }
@@ -33,8 +32,7 @@ public class CubeTakeAttackSystem : BaseSystem<CubeTakeAttackComponent>
 
         if (component.timer.Value >= currentLifeTime)
         {
-            component.pool.Despawn(component.transform.Value
-                .GetComponent<Cube>());
+            component.pool.Despawn(component.view.Value);
 
             this.DestroyEntity();
         }
