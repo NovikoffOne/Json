@@ -1,5 +1,6 @@
 ﻿using BlackECS;
 using BlackECS.Systems;
+using LasyDI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +15,27 @@ public class CubeTakeAttackSystem : BaseSystem<CubeTakeAttackComponent>
 
     public override void OnUpdate(CubeTakeAttackComponent component, float deltaTime)
     {
-        var currentTime = UnityEngine.Random.Range(2, 5);
+        var currentLifeTime = UnityEngine.Random.Range(2, 5);
 
-        component.Transform.Value.Translate(component.Direction.Value * component.speed.Value * Time.deltaTime);
+        component.transform.Value.Translate(component.direction.Value * component.speed.Value * Time.deltaTime);
 
-        component.Transform.Value.localScale -= Vector3.one * component.scaleForce.Value * deltaTime;
+        component.transform.Value.localScale -= Vector3.one * component.scaleForce.Value * deltaTime;
 
-        if (TryScaleValue(component.Transform.Value.localScale))
+        if (TryScaleValue(component.transform.Value.localScale))
         {
-            GameObject.Destroy(component.Transform.Value.gameObject);
+            component.pool.Despawn(component.transform.Value
+                .GetComponent<Cube>());
+            
             this.DestroyEntity();
         }
 
-        component.Timer.Value += deltaTime;
+        component.timer.Value += deltaTime;
 
-        if (component.Timer.Value >= currentTime)
+        if (component.timer.Value >= currentLifeTime)
         {
-            GameObject.Destroy(component.Transform.Value.gameObject);
+            component.pool.Despawn(component.transform.Value
+                .GetComponent<Cube>());
+
             this.DestroyEntity();
         }
     }

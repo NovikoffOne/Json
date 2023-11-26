@@ -9,13 +9,15 @@ public class CubeInitializationSystem : BaseSystem<CubeInitializationComponent>
 
     public override void OnUpdate(CubeInitializationComponent component, float deltaTime)
     {
-        component.Transform.Value.position = component.Position.Value;
+        component.transform.Value.position = component.position.Value;
 
-        component.Renderer.Value.material.SetColor("_Color", component.Color[component.ColorIndex.Value]);
+        component.renderer.Value.material
+            .SetColor("_Color", component.colors[component.colorIndex.Value]);
 
         this.TransitToComponent<CubeWaitTakeAttackComponent>(x =>
         {
-            x.Transform.Value = component.Transform.Value;
+            x.Transform.Value = component.transform.Value;
+            x.pool = component.pool;
         });
 
         this.ForgetComponent<CubeInitializationComponent>();

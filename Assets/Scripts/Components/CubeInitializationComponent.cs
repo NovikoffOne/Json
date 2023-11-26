@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CubeInitializationComponent : IComponent
 {
-    public ComponentDataField<Vector3> Position;
-    public ComponentDataField<Transform> Transform;
-    public ComponentDataField<Renderer> Renderer;
-    public ComponentDataField<int> ColorIndex;
+    public ComponentDataField<Vector3> position;
+    public ComponentDataField<Transform> transform;
+    public ComponentDataField<Renderer> renderer;
+    public ComponentDataField<int> colorIndex;
     public ComponentDataField<Vector3> offset;
 
-    public List<Color> Color;
+    public PoolCubes<Cube> pool;
+    public List<Color> colors;
 }

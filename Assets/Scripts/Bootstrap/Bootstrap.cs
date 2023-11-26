@@ -31,12 +31,13 @@ public class Bootstrap : MonoBehaviour
             .CreateEntity()
             .AddComponent<CubeInitializationComponent>(x =>
             {
-                x.Transform.Value = cube.transform;
-                x.Renderer.Value = cube.Renderer;
-                x.Position.Value = data[i].position;
-                x.ColorIndex.Value = data[i].colorIndex;
+                x.transform.Value = cube.transform;
+                x.renderer.Value = cube.Renderer;
+                x.position.Value = data[i].position;
+                x.colorIndex.Value = data[i].colorIndex;
 
-                x.Color = cubeData._colors;
+                x.pool = _pool;
+                x.colors = cubeData._colors;
             });
         }
     }

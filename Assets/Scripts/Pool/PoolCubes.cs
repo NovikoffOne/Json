@@ -1,27 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using LasyDI.Pool;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolCubes<T>
+public class PoolCubes<T> : BasePoolObjectDI<Cube>
     where T : MonoBehaviour
 {
     private readonly T Prefab;
-    private readonly Transform PoolContainer;
+    //private readonly Transform PoolContainer;
 
-    private List<T> _pool;
+    //private List<T> _pool;
 
-    public readonly List<T> Pool;
+    //public readonly List<T> Pool;
 
     public PoolCubes(T prefab)
     {
-        Prefab = prefab;
-        _pool = new List<T>();
+        //Prefab = prefab;
+        //_pool = new List<T>();
 
-        PoolContainer = new GameObject().transform;
+        //PoolContainer = new GameObject().transform;
 
-        Object.DontDestroyOnLoad(PoolContainer);
+        //Object.DontDestroyOnLoad(PoolContainer);
     }
 
-    public int Count => _pool.Count;
+    //public int Count => _pool.Count;
 
     public virtual void OnSpawn(T element)
     {
@@ -33,47 +34,8 @@ public class PoolCubes<T>
         element.gameObject.SetActive(false);
     }
 
-    public T Spawn()
-    {
-        if (HasFreeElement(out var element))
-            return element;
-        else
-            return CreateItem(true);
-    }
-
-    public void DeSpawn(T spawnedObject)
-    {
-        spawnedObject.gameObject.SetActive(false);
-
-        _pool.Add(spawnedObject);
-    }
-
-    public void DeSpawnAll()
-    {
-        _pool.ForEach(element => OnDespawn(element));
-    }
-
-    private T CreateItem(bool isActiveByDefault = false)
-    {
-        var createdObject = Object.Instantiate(Prefab, PoolContainer.position, Quaternion.identity, PoolContainer);
-
-        createdObject.gameObject.SetActive(isActiveByDefault);
-
-        _pool.Add(createdObject);
-
-        return createdObject;
-    }
-
-    private bool HasFreeElement(out T element)
-    {
-        if (element = _pool.Find(element => !element.gameObject.activeInHierarchy))
-        {
-            OnSpawn(element);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //public void DeSpawnAll()
+    //{
+    //    _pool.ForEach(element => OnDespawn(element));
+    //}
 }

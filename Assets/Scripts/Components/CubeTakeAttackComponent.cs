@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class CubeTakeAttackComponent : IComponent
 {
-    public ComponentDataField<Vector3> Direction;
-    public ComponentDataField<Transform> Transform;
+    public ComponentDataField<Vector3> direction;
+    public ComponentDataField<Transform> transform;
     public ComponentDataField<float> scaleForce;
     public ComponentDataField<float> speed;
-    public ComponentDataField<float> Timer;
+    public ComponentDataField<float> timer;
+    
+    public PoolCubes<Cube> pool;
+
 }
