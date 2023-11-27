@@ -16,9 +16,11 @@ public class CubeWaitTakeAttackSystem : BaseSystem<CubeWaitTakeAttackComponent>
         var scaleFactor = UnityEngine.Random.Range(0.3f, 1f);
         var speed = UnityEngine.Random.Range(0.5f, 4);
         var randomDirection = (Vector3.up + Vector3.right) * UnityEngine.Random.Range(-5f, 5);
+        randomDirection.z = -1;
         var lifeTime = UnityEngine.Random.Range(1, 3);
 
-        if (Input.GetKeyDown(KeyCode.A))
+        //if (Input.GetKeyDown(KeyCode.A))
+        if(component.view.Value.Hit)
         {
             this.TransitToComponent<CubeTakeAttackComponent>(x =>
             {

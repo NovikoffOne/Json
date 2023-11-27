@@ -20,8 +20,6 @@ public class LasyInstaller : MonoInstaller
         LasyContainer
             .BindPool<PoolCubes<Cube>, Cube>()
             .WhereInstance(_cubePrefab);
-
-        Debug.Log(LasyContainer.GetObject<PoolCubes<Cube>>());
     }
 
     private void Update()

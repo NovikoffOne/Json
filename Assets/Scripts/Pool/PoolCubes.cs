@@ -6,7 +6,7 @@ using UnityEngine;
 public class PoolCubes<T> : BasePoolObjectDI<Cube>
     where T : MonoBehaviour
 {
-    private float baseScale = 0.4f;
+    private float baseScale = 0.5f;
 
     public override void OnSpawn(Cube currentObject)
     {
