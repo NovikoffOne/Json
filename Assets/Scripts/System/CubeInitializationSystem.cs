@@ -12,14 +12,7 @@ public class CubeInitializationSystem : BaseSystem<CubeInitializationComponent>
     {
         component.view.Value.transform.position = component.position.Value;
 
-        //component.view.Value.Renderer.material
-        //    .SetColor("_Color", component.color.Value);
-
-        var material = new Material(component.view.Value.GetComponent<Renderer>().sharedMaterial);
-
-        material.color = component.color.Value;
-
-        component.view.Value.Renderer.material = material;
+        component.view.Value.Renderer.material = component.color.Value;
 
         this.TransitToComponent<CubeWaitTakeAttackComponent>(x =>
         {

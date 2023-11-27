@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using BlackECS;
+﻿using BlackECS;
 using LasyDI;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField] private Cube _cubesPrefabs;
+    [SerializeField] private Material _material;
 
     private void Start()
     {
@@ -18,12 +14,7 @@ public class Bootstrap : MonoBehaviour
 
         var pool = LasyContainer.GetObject<PoolCubes<Cube>>();
 
-        Dictionary<int, Color> colors = new Dictionary<int, Color>();
-
-        for (int i = 0; i < cubeData._colors.Count; i++)
-        {
-            colors[i] = cubeData._colors[i];
-        }
+        var colors = CreateColorsPalette(cubeData._colors);
 
         for (int i = 0; i < data.Count; i++)
         {
@@ -35,25 +26,26 @@ public class Bootstrap : MonoBehaviour
             {
                 x.view.Value = cube;
                 x.position.Value = data[i].position;
-                x.color.Value = colors[data[i].colorIndex];
+                x.color.Value = colors[cubeData._colors[data[i].colorIndex]];
             });
         }
     }
 
-    private void FixedUpdate()
+    private Dictionary<Color, Material> CreateColorsPalette(List<Color> dataColors)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        var colors = new Dictionary<Color, Material>();
+
+        foreach (var color in dataColors)
         {
-            RaycastHit hit;
+            if (colors.ContainsKey(color) == false)
+            {
+                var tempMaterial = new Material(_material);
+                tempMaterial.color = color;
 
-            int layerMask = 1 << 8;
-
-            layerMask = ~layerMask;
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, 100))
-                Debug.Log(hit.collider.gameObject.name);
+                colors[color] = tempMaterial;
+            }
         }
+
+        return colors;
     }
 }

@@ -13,9 +13,10 @@ public class CubeWaitTakeAttackSystem : BaseSystem<CubeWaitTakeAttackComponent>
 
     public override void OnUpdate(CubeWaitTakeAttackComponent component, float deltaTime)
     {
-        var scaleFactor = UnityEngine.Random.Range(0.8f, 2f);
+        var scaleFactor = UnityEngine.Random.Range(0.3f, 1f);
         var speed = UnityEngine.Random.Range(0.5f, 4);
-        var randomDirection = (Vector3.right + Vector3.up) * UnityEngine.Random.Range(0f, 10);
+        var randomDirection = (Vector3.up + Vector3.right) * UnityEngine.Random.Range(-5f, 5);
+        var lifeTime = UnityEngine.Random.Range(1, 3);
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -25,6 +26,7 @@ public class CubeWaitTakeAttackSystem : BaseSystem<CubeWaitTakeAttackComponent>
                 x.scaleForce.Value = scaleFactor;
                 x.speed.Value = speed;
                 x.direction.Value = randomDirection;
+                x.lifeTime.Value = lifeTime;
             });
         }
     }

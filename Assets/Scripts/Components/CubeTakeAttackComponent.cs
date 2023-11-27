@@ -10,6 +10,7 @@ public class CubeTakeAttackComponent : IComponent
     public ComponentDataField<float> scaleForce;
     public ComponentDataField<float> speed;
     public ComponentDataField<float> timer;
+    public ComponentDataField<float> lifeTime;
     
     public PoolCubes<Cube> pool;
 }

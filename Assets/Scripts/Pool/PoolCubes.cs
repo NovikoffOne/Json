@@ -1,17 +1,24 @@
 ﻿using LasyDI.Pool;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class PoolCubes<T> : BasePoolObjectDI<Cube>
     where T : MonoBehaviour
 {
-    public virtual void OnSpawn(T element)
+    private float baseScale = 0.4f;
+
+    public override void OnSpawn(Cube currentObject)
     {
-        element.gameObject.SetActive(true);
+        currentObject.transform.localScale = new Vector3(baseScale, baseScale, 1);
+
+        currentObject.gameObject.SetActive(true);
     }
 
-    public virtual void OnDespawn(T element)
+    public override void OnDespawn(Cube currentObject)
     {
-        element.gameObject.SetActive(false);
+        currentObject.transform.localScale = new Vector3(baseScale, baseScale, 1);
+
+        currentObject.gameObject.SetActive(false);
     }
 }
