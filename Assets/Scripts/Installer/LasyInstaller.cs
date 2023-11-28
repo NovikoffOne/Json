@@ -1,32 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using LasyDI;
+using UnityEngine;
 
 public class LasyInstaller : MonoInstaller
 {
-    [SerializeField] public Cube _cubePrefab;
+    [SerializeField] private Cube _cubePrefab;
+    [SerializeField] private Gun _gun;
+    [SerializeField] private Bullet _bulletPrefab;
 
     public override void OnInstall()
     {
         LasyContainer
-            .Bind<LasyTest>()
-            .AsSingle();
-
-        LasyContainer
-            .Bind<LasyTest2>()
-            .AsSingle();
-
-        LasyContainer
             .BindPool<PoolCubes<Cube>, Cube>()
             .WhereInstance(_cubePrefab);
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LasyContainer.GetObject<LasyTest>().Execute();
-        }
+        LasyContainer
+            .BindPool<PoolBullet<Bullet>, Bullet>()
+            .WhereInstance(_bulletPrefab);
+
+        LasyContainer
+            .Bind<Gun>()
+            .WhereInstance(_gun)
+            .AsSingle();
     }
 }

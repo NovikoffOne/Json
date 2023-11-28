@@ -1,8 +1,5 @@
 ﻿using BlackECS;
 using BlackECS.Systems;
-using System;
-using Unity.VisualScripting;
-using UnityEngine;
 
 public class CubeInitializationSystem : BaseSystem<CubeInitializationComponent>
 {
@@ -14,10 +11,6 @@ public class CubeInitializationSystem : BaseSystem<CubeInitializationComponent>
 
         component.view.Value.Renderer.material = component.color.Value;
 
-        this.TransitToComponent<CubeWaitTakeAttackComponent>(x =>
-        {
-            x.view.Value = component.view.Value;
-            x.pool = component.Pool;
-        });
+        this.DestroyEntity();
     }
 }

@@ -492,6 +492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubePrefab: {fileID: 6096626029549412568, guid: 4a79ce9b5963b574f9d4cf93a3bb58a9, type: 3}
+  _gun: {fileID: 2049270753}
+  _bulletPrefab: {fileID: 6100732055521923436, guid: 2c077ec7dc25e8a4aa2f71bb66bd27ec, type: 3}
 --- !u!4 &970611831
 Transform:
   m_ObjectHideFlags: 0
@@ -886,4 +888,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootPoint: {fileID: 1618693568}
   _bulletPrefab: {fileID: 6100732055521923436, guid: 2c077ec7dc25e8a4aa2f71bb66bd27ec, type: 3}
-  _force: 5
+  _force: 60

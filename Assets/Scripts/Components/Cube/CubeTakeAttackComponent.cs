@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BlackECS.Components;
+﻿using BlackECS.Components;
 using UnityEngine;
 
 public class CubeTakeAttackComponent : IComponent
@@ -11,6 +9,4 @@ public class CubeTakeAttackComponent : IComponent
     public ComponentDataField<float> speed;
     public ComponentDataField<float> timer;
     public ComponentDataField<float> lifeTime;
-    
-    public PoolCubes<Cube> pool;
 }

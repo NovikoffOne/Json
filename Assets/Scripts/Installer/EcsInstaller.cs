@@ -14,10 +14,12 @@ public class EcsInstaller : MonoInstaller
         World.SetExternalComponentConstructor<ComponentFactory>(factory => 
         {
             factory.Bind<CubeInitializationComponent>();
+            factory.Bind<GunShootComponent>();
         });
 
         World.RegistrationSystem<CubeInitializationSystem>();
-        World.RegistrationSystem<CubeWaitTakeAttackSystem>();
         World.RegistrationSystem<CubeTakeAttackSystem>();
+        World.RegistrationSystem<GunInputSystem>();
+        World.RegistrationSystem<GunShootSystem>();
     }
 }

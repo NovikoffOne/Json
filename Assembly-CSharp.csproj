@@ -58,28 +58,29 @@
     <Analyzer Include="D:\soft\2022.3.4f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\System\CubeInitializationSystem.cs" />
+    <Compile Include="Assets\Scripts\Components\Cube\CubeInitializationComponent.cs" />
     <Compile Include="Assets\Scripts\Factory\NativeObjectFactory.cs" />
-    <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\Bootstrap\Bootstrap.cs" />
+    <Compile Include="Assets\Scripts\Pool\PoolBullet.cs" />
+    <Compile Include="Assets\Scripts\System\Gun\GunInputSystem.cs" />
     <Compile Include="Assets\LasyDI\Resources\LasyDIUnityEditor.cs" />
     <Compile Include="Assets\Scripts\Factory\ComponentFactory.cs" />
     <Compile Include="Assets\Scripts\Installer\LasyInstaller.cs" />
-    <Compile Include="Assets\Scripts\LasyTest\LasyTest.cs" />
-    <Compile Include="Assets\Scripts\Components\CubeTakeAttackComponent.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Components\Cube\CubeTakeAttackComponent.cs" />
+    <Compile Include="Assets\Scripts\Gun\Gun.cs" />
+    <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\System\Cube\CubeTakeAttackSystem.cs" />
     <Compile Include="Assets\Scripts\Installer\EcsInstaller.cs" />
-    <Compile Include="Assets\Scripts\Components\CubeInitializationComponent.cs" />
     <Compile Include="Assets\Scripts\Pool\PoolCubes.cs" />
     <Compile Include="Assets\Scripts\Cube\Cube.cs" />
     <Compile Include="Assets\Scripts\Factory\IFactory.cs" />
-    <Compile Include="Assets\Scripts\System\CubeTakeAttackSystem.cs" />
-    <Compile Include="Assets\Scripts\LasyTest\LasyTest2.cs" />
     <Compile Include="Assets\Scripts\Json\CubeData.cs" />
+    <Compile Include="Assets\Scripts\Components\Gun\GunInputComponent.cs" />
     <Compile Include="Assets\Scripts\Json\JsonToString.cs" />
     <Compile Include="Assets\Scripts\Factory\GameObjectFactory.cs" />
-    <Compile Include="Assets\Scripts\System\CubeWaitTakeAttackSystem.cs" />
-    <Compile Include="Assets\Scripts\Components\CubeWaitTakeAttackComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\Gun\GunShootComponent.cs" />
+    <Compile Include="Assets\Scripts\System\Gun\GunShootSystem.cs" />
+    <Compile Include="Assets\Scripts\System\Cube\CubeInitializationSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BlackECS\Plugin\BlackECS.dll" />
